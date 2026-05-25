@@ -25,34 +25,39 @@ Developed by: Muthu Ganesh R
 RegisterNumber: 212225040267
 
 
-import numpy as np 
+import numpy as np
 import matplotlib.pyplot as plt
 
-x=np.array(2,9,5,5,3,7,1,8,6,2)
-y=np.array(69,98,82,77,71,84,55,94,84,64)
+# Sample dataset (Univariate)
+x = np.array([1, 2, 3, 4, 5])     # Input feature
+y = np.array([2, 4, 5, 4, 5])     # Target values
 
-x_mean=np.mean(x)
-y_mean=np.mean(y)
+# Number of observations
+n = len(x)
 
-num = 0
-denom=0
-for i in range (len(x)):
-    num+=(x[i]-x_mean)*(y[i]-y_mean)
-    denom+=(x[i]-x_mean)**2
-m=num/denom
-b=y_mean-m*x_mean
-print(m,b)
+# Calculate slope (m) and intercept (c)
+m = (n * np.sum(x * y) - np.sum(x) * np.sum(y)) / (n * np.sum(x ** 2) - (np.sum(x)) ** 2)
+c = (np.sum(y) - m * np.sum(x)) / n
 
-y_predicted = m*x+b
-print(y_predicted)
+print(f"Slope (m): {m}")
+print(f"Intercept (c): {c}")
 
-plt.scatter(x,y)
-plt.plot(x,y_predicted,color='red')
-plt.show
+# Predict y values
+y_pred = m * x + c
+
+# Plot the data points and regression line
+plt.scatter(x, y, color='blue', label='Actual data')
+plt.plot(x, y_pred, color='red', label='Fitted line')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title('Univariate Linear Regression using Least Squares')
+plt.legend()
+plt.show()
 ```
 
 ## Output:
-<img width="1099" height="722" alt="Screenshot 2025-09-12 143438" src="https://github.com/user-attachments/assets/de07204a-2ea4-4b57-bc14-061e7b095278" />
+<img width="800" height="616" alt="Screenshot 2026-05-25 090332" src="https://github.com/user-attachments/assets/1f5bd680-c1f7-425f-b90b-efe79f774557" />
+
 
 ## Result:
 Thus the univariate Linear Regression was implemented to fit a straight line using least squares using python programming.
